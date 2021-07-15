@@ -1,0 +1,21 @@
+<!--pages/two/home/home.wxml-->
+<import src="people/people-template.wxml" />
+
+<view class='cu-custom'>
+  <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back'></text> 返回
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>班级02</view>
+  </view>
+</view>
+<view class="one-bg">
+  <block wx:for="{{peopleData}}">
+    <template is="dice-template" data="{{...item}}" />
+  </block>
+</view>
+<view class='cu-load load-modal' wx:if="{{loadModal}}">
+  <view class='cuIcon-emojifill text-orange'></view>
+  <!-- <image src='/images/logo.png' class='png' mode='aspectFit'></image> -->
+  <view class='gray-text'>加载中...</view>
+</view>

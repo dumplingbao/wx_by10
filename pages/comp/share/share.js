@@ -1,0 +1,179 @@
+// pages/comp/share/share.js
+Component({
+  properties: {
+    //属性值可以在组件使用时指定
+    isCanDraw: {
+      type: Boolean,
+      value: false,
+      observer(newVal, oldVal) {
+        newVal && this.drawPic()
+      }
+    }
+  },
+  data: {
+    imgDraw: {}, //绘制图片的大对象
+    sharePath: '', //生成的分享图
+    visible: false
+  },
+  methods: {
+    handleClose() {
+      this.setData({
+        visible: false
+      })
+      this.triggerEvent('close')
+    },
+    drawPic() {
+      if (this.data.sharePath) { //如果已经绘制过了本地保存有图片不需要重新绘制
+        this.setData({
+          visible: true
+        })
+        this.triggerEvent('initData') 
+        return
+      }
+      wx.showLoading({
+        title: '生成中'
+      })
+      this.setData({
+        imgDraw: {
+          width: '750rpx',
+          height: '1334rpx',
+          background: 'https://ossbao.oss-cn-qingdao.aliyuncs.com/by10/xc/circle.jpg',
+          views: [
+            {
+              type: 'image',
+              url: 'https://ossbao.oss-cn-qingdao.aliyuncs.com/by10/open/banner/001.jpg',
+              css: {
+                top: '32rpx',
+                left: '30rpx',
+                right: '32rpx',
+                width: '688rpx',
+                height: '420rpx',
+                borderRadius: '16rpx'
+              },
+            },
+            {
+              type: 'image',
+              url: wx.getStorageSync('avatarUrl') || 'https://ossbao.oss-cn-qingdao.aliyuncs.com/by10/xc/wu.png',
+              css: {
+                top: '404rpx',
+                left: '328rpx',
+                width: '96rpx',
+                height: '96rpx',
+                borderWidth: '6rpx',
+                borderColor: '#FFF',
+                borderRadius: '96rpx'
+              }
+            },
+            {
+              type: 'text',
+              text: wx.getStorageSync('nickName') || '数十年',
+              css: {
+                top: '532rpx',
+                fontSize: '28rpx',
+                left: '375rpx',
+                align: 'center',
+                color: '#3c3c3c'
+              }
+            },
+            {
+              type: 'text',
+              text: `你好，老同学`,
+              css: {
+                top: '576rpx',
+                left: '375rpx',
+                align: 'center',
+                fontSize: '28rpx',
+                color: '#3c3c3c'
+              }
+            },
+            {
+              type: 'text',
+              text: `毕业十周年`,
+              css: {
+                top: '644rpx',
+                left: '375rpx',
+                maxLines: 1,
+                align: 'center',
+                fontWeight: 'bold',
+                fontSize: '44rpx',
+                color: '#3c3c3c'
+              }
+            },
+            {
+              type: 'image',
+              url: 'https://ossbao.oss-cn-qingdao.aliyuncs.com/by10/xc/xcx.jpg',
+              css: {
+                top: '834rpx',
+                left: '275rpx',
+                width: '200rpx',
+                height: '200rpx'
+              }
+            }
+          ]
+        }
+      })
+    },
+    onImgErr(e) {
+      wx.hideLoading()
+      wx.showToast({
+        title: '生成分享图失败，请刷新页面重试'
+      })
+    },
+    onImgOK(e) {
+      wx.hideLoading()
+      this.setData({
+        sharePath: e.detail.path,
+        visible: true,
+      })
+      //通知外部绘制完成，重置isCanDraw为false
+      this.triggerEvent('initData') 
+    },
+    preventDefault() { },
+    // 保存图片
+    handleSavePhoto() {
+      wx.showLoading({
+        title: '正在保存...',
+        mask: true
+      })
+      wx.saveImageToPhotosAlbum({
+        filePath: this.data.sharePath,
+        success: () => {
+          wx.showToast({
+            title: '保存成功'
+          })
+          setTimeout(() => {
+            this.setData({
+              visible: false
+            })
+            this.triggerEvent('close')
+          }, 300)
+        },
+        fail: () => {
+          wx.getSetting({
+            success: res => {
+              let authSetting = res.authSetting
+              if (!authSetting['scope.writePhotosAlbum']) {
+                wx.showModal({
+                  title: '提示',
+                  content: '您未开启保存图片到相册的权限，请点击确定去开启权限！',
+                  success(res) {
+                    if (res.confirm) {
+                      wx.openSetting()
+                    }
+                  }
+                })
+              }
+            }
+          })
+          setTimeout(() => {
+            wx.hideLoading()
+            this.setData({
+              visible: false
+            })
+            this.triggerEvent('close')
+          }, 300)
+        }
+      })
+    }
+  }
+})

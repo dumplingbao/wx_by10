@@ -1,0 +1,48 @@
+<!--pages/dynamic/dynamic.wxml-->
+<!-- bindscrolltoupper="loadNew" -->
+<cu-custom  bgColor="bg-cyan" isCustom="{{false}}"><view slot="content">动态</view></cu-custom>
+<view class="cu-bar bg-white">
+  <view class="action">
+    <text class="cuIcon-titles text-green"></text>
+    <text class="text-xl text-bold">聚会动态</text>
+  </view>
+</view>
+<scroll-view style="height:calc(100vh - 239rpx)" scroll-y class="scrollPage" bindscrolltolower="loadMore">
+
+  <view class="cu-card dynamic {{isCard?'no-card':''}}" wx:for="{{articleList}}" wx:key>
+    <view class="cu-item shadow">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round sm" style="background-image:url({{item.userHead}});"></view>
+          <view class="content flex-sub">
+            <view>{{item.userName}}</view>
+            <view class="text-gray text-sm flex justify-between">
+              {{item.createdTime}}
+            </view>
+          </view>
+          <view class="cu-share sm">
+            <button class="cu-btn sm cuIcon-share text-green" data-pic="{{item.picInfoList}}" open-type="share"></button>
+          </view>
+        </view>
+      </view>
+      <view class="text-content">
+        {{item.content}}
+      </view>
+      <view class="grid flex-sub padding-lr-xs {{isCard?'col-3 grid-square':'col-1'}}">
+        <view bindtap="ViewImage" data-url="{{picItem.url}}" data-picitem="{{item.picInfoList}}" class="bg-img {{item.picInfoList.length!=1?'':'only-img'}}" style="background-image:url({{picItem.url}});" wx:for="{{item.picInfoList}}" wx:for-item="picItem" wx:key>
+        </view>
+      </view>
+      <view class="text-gray text-sm text-right padding">
+        <text class="margin-lr-xs text-red" wx:if="{{item.ooIs == 1}}">OO {{item.ooNum}}</text>
+        <text bindtap='ooclick' data-id='{{item.id}}' data-dex="{{index}}" class="margin-lr-xs" wx:else>OO {{item.ooNum}}</text>
+        <text class="margin-lr-xs text-red" wx:if="{{item.xxIs == 1}}">XX {{item.xxNum}}</text>
+        <text bindtap='xxclick' data-id='{{item.id}}' data-dex="{{index}}" class="margin-lr-xs" wx:else>XX {{item.xxNum}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="text-gray text-sm text-center padding-xs">
+    <text class="margin-lr-xs" wx:if="{{hasMoreData}}">上滑加载更多</text>
+    <text class="margin-lr-xs" wx:else>已无更多数据</text>
+  </view>
+</scroll-view>

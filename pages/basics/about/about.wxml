@@ -1,0 +1,20 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">公告</view></cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>十周年聚会</view>
+  <view class='text-content'>
+    <view class='margin-top-sm'>如常</view>
+    <view class='margin-top-sm'>工作如常，生活也都如常</view>
+    <view class='margin-top-sm'>你看路上人群涌动不解为何而忙</view>
+    <view class='margin-top-sm'>城市慷慨亮整夜光</view>
+    <view class='margin-top-sm'>如同少年不惧岁月长</view>
+    <view class='margin-top-sm'>想起那些慢慢变陌生的朋友</view>
+    <view class='margin-top-sm'>相逢太短不等茶水凉</view>
+    <view class='margin-top-sm'>若有天我不复勇往</view>
+    <view class='margin-top-sm'>能否陪我一起尝遍济大的美食</view>
+    <view class='margin-top-sm'>踏遍母校的每一个角落</view>
+    <view class='margin-top-sm'>不要未来</view>
+    <view class='margin-top-sm'>只要你来</view>
+
+    <view class='margin-top-sm'>文章来源简书：https://www.jianshu.com/p/fd68216df7d8</view>
+  </view>
+</view>

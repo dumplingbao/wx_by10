@@ -1,0 +1,11 @@
+<!--pages/comp/share/share.wxml-->
+<view class="share-wrap {{visible ? 'active' : ''}}" catchtouchmove="preventDefault">
+  <view class="share-back {{visible ? 'active' : ''}}"></view>
+  <view class="share-container {{visible ? 'active' : ''}}">
+    <view class="close" bindtap="handleClose"></view>
+    <image mode="widthFix" src="{{sharePath}}" class="share-image" />
+    <view class="save-btn" bindtap="handleSavePhoto"></view>
+  </view>
+</view>
+<painter style="position: absolute; top: -9999rpx;" widthPixels="1000" palette="{{imgDraw}}" bind:imgOK="onImgOK" />
+

@@ -1,0 +1,32 @@
+/* pages/dynamic/dynamic.wxss */
+.sub-title{
+  color: #76787e;
+  height: 15px;
+  line-height: 15px;
+  /*padding: 0 16px;*/
+  width: 100%;
+  font-size: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.cu-share {
+  position: absolute;
+  right: 30rpx;
+	font-variant: small-caps;
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #00CC33;
+	color: var(--white);
+	white-space: nowrap;
+	width: 48rpx;
+	height: 48rpx;
+	background-size: cover;
+	background-position: center;
+	vertical-align: middle;
+	font-size: 1.3em;
+}

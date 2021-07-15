@@ -1,0 +1,9 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">关于</view></cu-custom>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于数十年</view>
+  <view class='text-content'>
+    <view>Hi！你好！</view>
+    <view class='margin-top-sm'>这是一款定制小程序，来源于毕业十周年庆。</view>
+    <view class='margin-top-sm'>更多功能敬请期待！</view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<template name="dice-template">
+  <view id="border" animation="{{anim}}">
+      <view class="row">
+        <view class="dot" style="background:url({{dots}}) no-repeat center;background-size: 100%;">
+          <view class="cu-tag badge {{gender%2==0?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+        </view>
+        <view style="text-align:center;margin-top:-55rpx">
+          <view class="cu-tag bg-grey">{{name}}</view>
+        </view>
+      </view>
+  </view>
+</template>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "painter":"/pages/comp/painter/painter",
+    "share-box": "/pages/comp/share/share"
+  }
+}
